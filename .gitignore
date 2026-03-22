@@ -1,0 +1,28 @@
+# Binaries
+k8s-manager
+k8s-lister
+*.exe
+*.dll
+*.so
+*.dylib
+
+# Test coverage
+*.out
+coverage.html
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Go
+vendor/
+
+# Python virtual environment (if present)
+venv/
