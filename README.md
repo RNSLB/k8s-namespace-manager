@@ -65,3 +65,47 @@ Rohit Narwani - Delivery Manager at SLB
 - [ ] Add ResourceQuota creation
 - [ ] Add LimitRange support
 - [ ] Add NetworkPolicy templates
+
+## Resource Quota Management
+
+### Create ResourceQuota
+
+Create resource quotas to limit resource consumption in namespaces.
+
+#### With Default Values
+```bash
+# Creates quota with sensible defaults:
+# - CPU requests: 10 cores
+# - Memory requests: 20Gi
+# - CPU limits: 20 cores
+# - Memory limits: 40Gi
+# - Max pods: 50
+
+k8s-manager quota create --namespace my-app --default
+```
+
+#### With Custom Values
+```bash
+k8s-manager quota create --namespace my-app \
+  --name compute-quota \
+  --requests-cpu 5 \
+  --requests-memory 10Gi \
+  --limits-cpu 10 \
+  --limits-memory 20Gi \
+  --max-pods 25
+```
+
+#### Verify Quota
+```bash
+kubectl describe resourcequota -n my-app
+```
+
+### What is ResourceQuota?
+
+ResourceQuota limits resource consumption in a namespace:
+- **Prevents resource hogging** - One team can't use all cluster resources
+- **Cost control** - Limit spending per team/environment
+- **Fair distribution** - Ensures resources are shared equitably
+
+**Platform Engineering Best Practice:** Always set quotas on namespaces to prevent runaway resource usage.
+
